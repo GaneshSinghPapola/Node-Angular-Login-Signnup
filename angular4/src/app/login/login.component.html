@@ -1,0 +1,31 @@
+
+
+    <form role="form" (submit)="login()"><br>
+      <div layout="row" class="layout-row">
+        <div layout="col-sm-12">
+          <mat-form-field flex="50" class="flex-50">
+            <input matInput  type="text" required [(ngModel)]="user.username" id="username" name="username" placeholder="user name">
+          </mat-form-field>
+        </div>
+      </div>
+<div layout="row" class="layout-row">
+  <div layout="col-sm-12">
+    <mat-form-field flex="50" class="flex-50">
+      <input matInput type="password" required [(ngModel)]="user.password" id="password" name="password" placeholder="password">
+    </mat-form-field>
+  </div>
+</div>
+
+<div layout="row">
+  <div layout="col-s6">
+    <button mat-raised-button color="warn" type="submit" name="action">LOGIN</button><br><br>
+    <span id="err"><small>{{errorMsg}}</small></span>
+
+  </div>
+</div>
+
+
+
+    </form >
+
+
