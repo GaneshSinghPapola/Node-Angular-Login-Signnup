@@ -26,7 +26,8 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
-    "nodemon": "^1.9.1"
+    "nodemon": "^1.9.1",
+    "supertest": "^3.0.0"
   },
   "license": "ISC"
 }

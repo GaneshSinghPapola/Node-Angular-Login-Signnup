@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test';
 
 const mongoose = require("mongoose");
-
+const superTest = require('supertest');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 // const server = require('../server');
@@ -33,6 +33,25 @@ describe('Unit test for Login & Registration', () => {
                     done();
             });
         });
+
+        describe('Login API', function() {
+            it('Should success if credential is valid', function(done) {
+                superTest(app)
+                   .post('/api/v1/login')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({ username: 'username', password: 'password' })
+                   .expect(200)
+                   .expect('Content-Type', /json/)
+                   .expect(function(response) {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            }); 
+        });
+
+
 
 
 //   describe('/GET Method', () => {
