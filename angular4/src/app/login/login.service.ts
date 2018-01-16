@@ -12,7 +12,6 @@ export class LoginService {
 
   login(obj) {
     return this.http.post('http://localhost:3000/login', obj)
-                    .toPromise().then(response => response.json())
-                    .catch(error => error.json());
+                    .toPromise().then(response => response)
   }
 }

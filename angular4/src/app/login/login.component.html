@@ -1,16 +1,16 @@
 
 
-    <form role="form" (submit)="login()"><br>
+    <form role="form" #mainForm="ngForm" novalidate >
       <div layout="row" class="layout-row">
         <div layout="col-sm-12">
-          <mat-form-field flex="50" class="flex-50">
+          <mat-form-field flex="50" class="w-70">
             <input matInput  type="text" required [(ngModel)]="user.username" id="username" name="username" placeholder="user name">
           </mat-form-field>
         </div>
       </div>
 <div layout="row" class="layout-row">
   <div layout="col-sm-12">
-    <mat-form-field flex="50" class="flex-50">
+    <mat-form-field flex="50" class="w-70">
       <input matInput type="password" required [(ngModel)]="user.password" id="password" name="password" placeholder="password">
     </mat-form-field>
   </div>
@@ -18,7 +18,7 @@
 
 <div layout="row">
   <div layout="col-s6">
-    <button mat-raised-button color="warn" type="submit" name="action">LOGIN</button><br><br>
+    <button mat-raised-button color="warn" (click)="login()" name="login">LOGIN</button><br><br>
     <span id="err"><small>{{errorMsg}}</small></span>
 
   </div>

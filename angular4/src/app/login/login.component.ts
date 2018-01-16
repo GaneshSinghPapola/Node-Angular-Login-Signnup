@@ -5,13 +5,20 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[LoginService]
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-user={}
-  constructor() { }
+user= { };
+  constructor(
+    private service: LoginService
+  ) { }
 
   ngOnInit() {
+  }
+
+  login(){
+    this.service.login(this.user).then(res=>console.log(res));
+    console.log(this.user)
   }
 
 }

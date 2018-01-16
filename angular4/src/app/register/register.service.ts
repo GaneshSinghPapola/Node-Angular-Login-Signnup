@@ -12,7 +12,6 @@ export class RegisterService {
 
   register(obj) {
     return this.http.post('http://localhost:3000/register', obj)
-                    .toPromise().then(response => response.json())
-                    .catch(error => error.json());
+                    .toPromise().then(response => response);
   }
 }

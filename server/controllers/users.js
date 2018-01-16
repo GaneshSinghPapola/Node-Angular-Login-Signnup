@@ -16,10 +16,11 @@ export default {
 
 const saveUser = (data) => {
     let newUser = UsersModel(data);
-    new Promise((resolve, reject) =>
+    new Promise((resolve, reject) =>{
         newUser.save((err, done) => {
             if (err) reject(err);
             resolve(done);
         });
-    );
+    })
+
 }

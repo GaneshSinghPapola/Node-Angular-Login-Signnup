@@ -9,9 +9,14 @@ import { RegisterService } from './register.service';
 })
 export class RegisterComponent implements OnInit {
   user={}
-  constructor() { }
+  constructor(private service: RegisterService) { }
 
   ngOnInit() {
+  }
+
+  login(){
+    this.service.register(this.user).then(res=>console.log(res));
+    console.log(this.user)
   }
 
 }
