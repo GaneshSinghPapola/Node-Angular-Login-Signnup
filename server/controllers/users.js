@@ -6,11 +6,11 @@ import {
 export default {
     login(req, res) {
         // todo validate first here
-        res.send('test')
+        res.json({'test':'test'})
     },
 
     register(req, res) {
-        res.send('test')
+        res.json({'test':'test'})
     }
 }
 

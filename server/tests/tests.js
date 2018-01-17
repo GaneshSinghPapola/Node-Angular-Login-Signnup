@@ -11,22 +11,23 @@ const assert = chai.assert;
 import {app} from '../server';
 
 const testArr = [1,2,3,4,5,6];
+const SuperTest = superTest(app);
 let timeout = 30000;
 describe('Unit test for Login & Registration', () => {
 
-        describe('Test init', function () {
-            this.timeout(timeout);
-            it('test list', done => {
+
+        // describe('Test init', function () {
+        //     this.timeout(timeout);
+        //     it('test list', done => {
     
-                    expect(testArr).to.be.an('array');
-                    done();
-            });
-        });
+        //             expect(testArr).to.be.an('array');
+        //             done();
+        //     });
+        // });
 
         describe('Login API', function() {
             it('Should success if credential is valid', function(done) {
-                superTest(app)
-                   .post('/login')
+                SuperTest.post('/login')
                    .set('Accept', 'application/json')
                    .set('Content-Type', 'application/json')
                    .send({ username: 'username', password: 'password' })
@@ -37,6 +38,8 @@ describe('Unit test for Login & Registration', () => {
                       expect(response.body).to.be.an('object');
                    })
                    .end(done);
+
+
             }); 
         });
 });
