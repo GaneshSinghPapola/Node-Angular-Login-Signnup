@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
+  register(){
     this.service.register(this.user).then(res=>console.log(res));
     console.log(this.user)
   }
