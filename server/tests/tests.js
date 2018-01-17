@@ -25,7 +25,7 @@ describe('Unit test for Login & Registration', () => {
         //     });
         // });
 
-        describe('Login API', function() {
+        describe('Login API', ()=> {
             it('Should success if credential is valid', function(done) {
                 SuperTest.post('/login')
                    .set('Accept', 'application/json')
