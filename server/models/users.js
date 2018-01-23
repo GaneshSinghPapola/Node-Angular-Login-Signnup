@@ -10,7 +10,7 @@ const validateEmail = function(email) {
 
 
 let UserSchema = new Schema({
-  name: String,
+  name: {type:String,required:''},
   username: { type: String, required: true, unique: true, unique: [true, 'This username has already been taken'], },
   password: { type: String, required: true },
   email: {
@@ -24,8 +24,8 @@ let UserSchema = new Schema({
   admin: {type:Boolean, default:false},
   location: String,
   age: {type:Number, min:0, max:120},
-  created_at: Date,
-  updated_at: Date
+  created_at: {'type':Date, default:new Date()},
+  updated_at: {'type':Date, 'default': new Date()}
 });
 
 

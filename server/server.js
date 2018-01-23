@@ -3,10 +3,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import routes from './routes';
-
-
+import expressValidator from 'express-validator';
+import session from 'express-session';
 import mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost/test');
+const MongoStore = require('connect-mongo')(session);
+mongoose.connect('mongodb://localhost/Nodelogin', {useMongoClient: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', ()=> {
@@ -15,13 +16,59 @@ db.once('open', ()=> {
 
 const port = 3000;
 export const app = express();
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
-    res.send('Invalid endpoint!');
-});
+
+app.use(expressValidator());
+app.use(session({
+  name: 'LoginSignupCookie',
+  secret: 'TestTastyNodeNody',
+  resave: true,
+  rolling: true,
+  saveUninitialized: false,
+  cookie: { secure: true, maxAge: 129600000 },
+  store: new MongoStore({
+    mongooseConnection : mongoose.connections[0],
+    stringify:true,
+    collection: 'sessions',
+    autoRemove:'interval',
+    autoRemoveInterval:300
+  })
+}))
+
 routes(app);
 app.listen(port, () => {
     console.info('server started - ', port);
 });
+
+
+
+// var Promise = require("bluebird");
+// var soap = require('soap');
+// let request = require('request');
+
+
+// let request_with_defaults = request.defaults({
+//   'proxy': 'http://example.com:80',
+//   'timeout': 5000,
+//   'connection': 'keep-alive'
+// });
+// //   var url = 'http://www.webservicex.com/globalweather.asmx?WSDL';
+// var url = 'https://cert1.springermiller.com/HTNGListener2_1/HTNGListener2_1.asmx?wsdl';
+// let soap_client_options = { 'request': request_with_defaults};
+// var soapHeader = {
+//     "Username": "test",
+//     "Password" : "test"
+//   };
+  
+//   var args = {};
+//   var soapHeader = {};
+//   soap.createClient(url, function(err, client) {
+//     console.log( err);
+//     //   client.addSoapHeader(soapHeader);
+//       client.ReceiveMessageResult(args, function(err, result, raw) {
+//           console.log(err, raw, result);
+//       });
+//   });
