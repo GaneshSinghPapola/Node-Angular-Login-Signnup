@@ -26,7 +26,11 @@ describe('Unit test for Login & Registration', () => {
         // })
 
     
-        describe('Login with invalid email address', ()=> {
+
+
+
+        describe('Login Tests', ()=> {
+
             it('Should success if email is valid', done => {
                 SuperTest.post('/login')
                    .set('Accept', 'application/json')
@@ -40,10 +44,9 @@ describe('Unit test for Login & Registration', () => {
                    })
                    .end(done);
             }); 
-        });
 
-        describe('Login with empty email address', ()=> {
-            it('Should success if email is valid', done => {
+
+            it('Should be failed with response code 400', done => {
                 SuperTest.post('/login')
                    .set('Accept', 'application/json')
                    .set('Content-Type', 'application/json')
@@ -56,10 +59,8 @@ describe('Unit test for Login & Registration', () => {
                    })
                    .end(done);
             }); 
-        });
 
-        describe('Login API with invalid credentials', ()=> {
-            it('Should success if credentials are valid', done => {
+            it('Should be failed with response code 400', done => {
                 SuperTest.post('/login')
                    .set('Accept', 'application/json')
                    .set('Content-Type', 'application/json')
@@ -72,9 +73,8 @@ describe('Unit test for Login & Registration', () => {
                    })
                    .end(done);
             }); 
-        });
 
-        describe('Login with valid credentials', ()=> {
+
             it('Should success if credentials are valid', done => {
                 SuperTest.post('/login')
                    .set('Accept', 'application/json')
@@ -91,24 +91,125 @@ describe('Unit test for Login & Registration', () => {
         });
 
 
-        //===============================================================================
+        //================================= sign up ==============================================
 
 
-        // describe('Signup if data is required', ()=> {
-        //     it('Should success if provided a valid required data', done => {
-        //         SuperTest.post('/register')
-        //            .set('Accept', 'application/json')
-        //            .set('Content-Type', 'application/json')
-        //            .send({ email: 'ganeshpapola@gmail.com', password: 'test12345' })
-        //            .expect(200)
-        //            .expect('Content-Type', /json/)
-        //            .expect(response=> {
-        //               expect(response.body).not.to.be.empty;
-        //               expect(response.body).to.be.an('object');
-        //            })
-        //            .end(done);
-        //     }); 
-        // });
+        describe('Signup tests ', ()=> {
+
+            it('without everything', done => {
+                SuperTest.post('/register')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({})
+                   .expect(400)
+                   .expect('Content-Type', /json/)
+                   .expect(response=> {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            });
+
+            it('without password and name', done => {
+                SuperTest.post('/register')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({ email: 'ganeshpapola@gmail.com', password: '' })
+                   .expect(400)
+                   .expect('Content-Type', /json/)
+                   .expect(response=> {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            });
+            
+            it('without email and name', done => {
+                SuperTest.post('/register')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({ email: '', password: '11111' })
+                   .expect(400)
+                   .expect('Content-Type', /json/)
+                   .expect(response=> {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            });
+
+            it('without name', done => {
+                SuperTest.post('/register')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({ email: 'ganeshpapola@gmail.com', password: 'test12345' })
+                   .expect(400)
+                   .expect('Content-Type', /json/)
+                   .expect(response=> {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            });
+
+            it('with invalid age', done => {
+                SuperTest.post('/register')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({ email: 'ganeshpapola@gmail.com', password: '1111s', age:1 })
+                   .expect(400)
+                   .expect('Content-Type', /json/)
+                   .expect(response=> {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            });
+
+            it('age as string', done => {
+                SuperTest.post('/register')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({ email: 'ganeshpapola@gmail.com', password: 'test12345', age:'etrakwgk' })
+                   .expect(400)
+                   .expect('Content-Type', /json/)
+                   .expect(response=> {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            });
+
+            it('with already registered email', done => {
+                SuperTest.post('/register')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({ email: 'ganeshpapola1@gmail.com', password: 'test12345', age:12, name:'ganesh singh' })
+                   .expect(400)
+                   .expect('Content-Type', /json/)
+                   .expect(response=> {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            });
+
+            it('with complete data', done => {
+                SuperTest.post('/register')
+                   .set('Accept', 'application/json')
+                   .set('Content-Type', 'application/json')
+                   .send({ email: 'ganeshpapola12121212@gmail.com', password: 'test12345', age:12, name:'ganesh singh' })
+                   .expect(400)
+                   .expect('Content-Type', /json/)
+                   .expect(response=> {
+                      expect(response.body).not.to.be.empty;
+                      expect(response.body).to.be.an('object');
+                   })
+                   .end(done);
+            });
+
+        });
+       
 
 });
 

@@ -4,7 +4,7 @@
   "description": "Normal user login and registration with test cases",
   "main": "loader.js",
   "scripts": {
-    "test": "mocha --require babel-polyfill --compilers js:babel-register  tests",
+    "test": "mocha --require babel-polyfill --require babel-register  tests",
     "start": "node loader.js"
   },
   "author": "Ganesh Singh",

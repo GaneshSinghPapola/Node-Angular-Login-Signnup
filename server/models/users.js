@@ -10,8 +10,7 @@ const validateEmail = function(email) {
 
 
 let UserSchema = new Schema({
-  name: {type:String,required:''},
-  username: { type: String, required: true, unique: true, unique: [true, 'This username has already been taken'], },
+  name: {type:String,required:'name is required'},
   password: { type: String, required: true },
   email: {
     type: String,
@@ -22,8 +21,7 @@ let UserSchema = new Schema({
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
 },
   admin: {type:Boolean, default:false},
-  location: String,
-  age: {type:Number, min:0, max:120},
+  age: {type:Number, min:10, max:120},
   created_at: {'type':Date, default:new Date()},
   updated_at: {'type':Date, 'default': new Date()}
 });
