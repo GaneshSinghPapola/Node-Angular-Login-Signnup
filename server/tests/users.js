@@ -11,7 +11,6 @@ const assert = chai.assert;
 
 import {app} from '../server';
 
-const testArr = [1,2,3,4,5,6];
 const SuperTest = superTest(app);
 let timeout = 30000;
 describe('Unit test for Login & Registration', () => {

@@ -15,12 +15,20 @@ export const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  // {
+  //   path: '',
+  //   component: DashboardComponent
+  // },
+  {
+    path: 'dashboard',
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    loadChildren: 'app/common/common.module#CommonModule',
   }
-//   {
-//     path: '',
-//     loadChildren: 'app/theme/theme.module#ThemeModule',
-//     canActivate: [AuthGuard],
-//   }
   // {
   //   path: '**',
   //   redirectTo: 'login',
