@@ -3,6 +3,10 @@ const { check, oneOf, validationResult } = require('express-validator/check');
 import bcrypt from 'bcryptjs';
 const saltRounds = 10;
 
+import chalk from 'chalk';
+const log = console.log;
+log(chalk.blue('User controller called'));
+
 exports.login = async (req, res, next) => {
     req.checkBody('email', 'Please provide an email').notEmpty();
     req.checkBody('email', 'Please provide a valid email').isEmail();
