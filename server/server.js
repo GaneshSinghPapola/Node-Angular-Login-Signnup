@@ -47,7 +47,8 @@ app.listen(port, () => {
 
 // var Promise = require("bluebird");
 // var soap = require('soap');
-// let request = require('request');
+// let request = require('request'),
+// parser = require('xml2json');
 
 
 // let request_with_defaults = request.defaults({
@@ -55,20 +56,22 @@ app.listen(port, () => {
 //   'timeout': 5000,
 //   'connection': 'keep-alive'
 // });
-// //   var url = 'http://www.webservicex.com/globalweather.asmx?WSDL';
-// var url = 'https://cert1.springermiller.com/HTNGListener2_1/HTNGListener2_1.asmx?wsdl';
+//   var url = 'http://www.webservicex.com/globalweather.asmx?WSDL';
+// // var url = 'https://cert1.springermiller.com/HTNGListener2_1/HTNGListener2_1.asmx?wsdl';
 // let soap_client_options = { 'request': request_with_defaults};
 // var soapHeader = {
 //     "Username": "test",
 //     "Password" : "test"
 //   };
   
-//   var args = {};
+//   var args = {CountryName:'india'};
 //   var soapHeader = {};
 //   soap.createClient(url, function(err, client) {
 //     console.log( err);
 //     //   client.addSoapHeader(soapHeader);
-//       client.ReceiveMessageResult(args, function(err, result, raw) {
-//           console.log(err, raw, result);
+//       client.GetCitiesByCountry(args, function(err, result, raw) {
+//           // console.log(err, result);
+//           var json = parser.toJson(raw);
+//       // console.log("to json -> %s", json);
 //       });
 //   });
