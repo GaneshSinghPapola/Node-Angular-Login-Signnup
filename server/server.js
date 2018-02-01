@@ -27,7 +27,7 @@ app.use(session({
   secret: 'TestTastyNodeNody',
   resave: true,
   rolling: true,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: { secure: true, maxAge: 129600000 },
   store: new MongoStore({
     mongooseConnection : mongoose.connections[0],

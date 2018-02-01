@@ -24,70 +24,6 @@ describe('Unit test for Login & Registration', () => {
         //     }); 
         // })
 
-    
-
-
-
-        describe('Login Tests', ()=> {
-
-            it('Should success if email is valid', done => {
-                SuperTest.post('/login')
-                   .set('Accept', 'application/json')
-                   .set('Content-Type', 'application/json')
-                   .send({ email: 'email@', password: 'password' })
-                   .expect(400)
-                   .expect('Content-Type', /json/)
-                   .expect(response=> {
-                      expect(response.body).not.to.be.empty;
-                      expect(response.body).to.be.an('object');
-                   })
-                   .end(done);
-            }); 
-
-
-            it('Should be failed with response code 400', done => {
-                SuperTest.post('/login')
-                   .set('Accept', 'application/json')
-                   .set('Content-Type', 'application/json')
-                   .send({ email: '', password: 'password' })
-                   .expect(400)
-                   .expect('Content-Type', /json/)
-                   .expect(response=> {
-                      expect(response.body).not.to.be.empty;
-                      expect(response.body).to.be.an('object');
-                   })
-                   .end(done);
-            }); 
-
-            it('Should be failed with response code 400', done => {
-                SuperTest.post('/login')
-                   .set('Accept', 'application/json')
-                   .set('Content-Type', 'application/json')
-                   .send({ email: 'email@test.com', password: 'password' })
-                   .expect(400)
-                   .expect('Content-Type', /json/)
-                   .expect(response=> {
-                      expect(response.body).not.to.be.empty;
-                      expect(response.body).to.be.an('object');
-                   })
-                   .end(done);
-            }); 
-
-
-            it('Should success if credentials are valid', done => {
-                SuperTest.post('/login')
-                   .set('Accept', 'application/json')
-                   .set('Content-Type', 'application/json')
-                   .send({ email: 'ganeshpapola@gmail.com', password: '11111' })
-                   .expect(200)
-                   .expect('Content-Type', /json/)
-                   .expect(response=> {
-                      expect(response.body).not.to.be.empty;
-                      expect(response.body).to.be.an('object');
-                   })
-                   .end(done);
-            }); 
-        });
 
 
         //================================= sign up ==============================================
@@ -197,8 +133,8 @@ describe('Unit test for Login & Registration', () => {
                 SuperTest.post('/register')
                    .set('Accept', 'application/json')
                    .set('Content-Type', 'application/json')
-                   .send({ email: 'ganeshpapola12121212@gmail.com', password: 'test12345', age:12, name:'ganesh singh' })
-                   .expect(400)
+                   .send({ email: 'ganeshpapola3@gmail.com', password: 'test12345', age:12, name:'ganesh singh' })
+                   .expect(200)
                    .expect('Content-Type', /json/)
                    .expect(response=> {
                       expect(response.body).not.to.be.empty;
@@ -208,7 +144,71 @@ describe('Unit test for Login & Registration', () => {
             });
 
         });
-       
+
+        
+// ===============login=============
+
+describe('Login Tests', ()=> {
+
+    it('Should success if email is valid', done => {
+        SuperTest.post('/login')
+           .set('Accept', 'application/json')
+           .set('Content-Type', 'application/json')
+           .send({ email: 'email@', password: 'password' })
+           .expect(400)
+           .expect('Content-Type', /json/)
+           .expect(response=> {
+              expect(response.body).not.to.be.empty;
+              expect(response.body).to.be.an('object');
+           })
+           .end(done);
+    }); 
+
+
+    it('Should be failed with response code 400', done => {
+        SuperTest.post('/login')
+           .set('Accept', 'application/json')
+           .set('Content-Type', 'application/json')
+           .send({ email: '', password: 'password' })
+           .expect(400)
+           .expect('Content-Type', /json/)
+           .expect(response=> {
+              expect(response.body).not.to.be.empty;
+              expect(response.body).to.be.an('object');
+           })
+           .end(done);
+    }); 
+
+    it('Should be failed with response code 400', done => {
+        SuperTest.post('/login')
+           .set('Accept', 'application/json')
+           .set('Content-Type', 'application/json')
+           .send({ email: 'email@test.com', password: 'password' })
+           .expect(400)
+           .expect('Content-Type', /json/)
+           .expect(response=> {
+              expect(response.body).not.to.be.empty;
+              expect(response.body).to.be.an('object');
+           })
+           .end(done);
+    }); 
+
+
+    it('Should success if credentials are valid', done => {
+        SuperTest.post('/login')
+           .set('Accept', 'application/json')
+           .set('Content-Type', 'application/json')
+           .send({ email: 'ganeshpapola3@gmail.com', password: 'test12345' })
+           .expect(200)
+           .expect('Content-Type', /json/)
+           .expect(response=> {
+              expect(response.body).not.to.be.empty;
+              expect(response.body).to.be.an('object');
+           })
+           .end(done);
+    }); 
+});
+
 
 });
 
