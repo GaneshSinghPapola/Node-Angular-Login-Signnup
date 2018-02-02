@@ -15,23 +15,6 @@ db.once('open', ()=> {
 
 const port = 3000;
 export const app = express();
-// app.use(session({
-//   secret: "TestTastyNodeNody",
-//   name: 'LoginSignupCookie',
-//   saveUninitialized: true,
-//   resave: true,
-//   rolling: true,
-//   cookie: { secure: true, maxAge: 129600000 },
-//   store: new MongoStore({
-//     mongooseConnection : mongoose.connections[0],
-//     stringify:true,
-//     collection: 'sessions',
-//     autoRemove:'interval',
-//     autoRemoveInterval:300
-//     // ttl: 2 * 24 * 60 * 60
-//   })
-// }));
-
 app.use(session({
   secret: 'TestTastyNodeNody',
   saveUninitialized: true,
