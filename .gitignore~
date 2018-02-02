@@ -3,3 +3,4 @@ angular4/node_modules
 server/node_modules
 .vscode
 server/.env
+server.package-lock.json

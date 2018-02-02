@@ -75,16 +75,12 @@ exports.register = async (req, res) => {
 }
 
 exports.logOut = (req, res) => {
-    res.clearCookie('LoginSignupCookie');
-    
-    req.session.destroy(function (err) {
+    // res.clearCookie('LoginSignupCookie'); //not working
+    req.session.destroy(err => {
         req.logout();
-        // res.redirect('/');
+        log(chalk.green(`user logged out successfully`));
+        res.status(200).json({ error: null, res: 'user logged out successfully' });
     });
-    req.logout();
-    log(chalk.green(JSON.stringify(req.session)));
-    res.status(200).json({ error: null, res: 'user logged out successfully' });
-
 }
 
 
