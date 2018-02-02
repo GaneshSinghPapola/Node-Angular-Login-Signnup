@@ -44,7 +44,7 @@ exports.login = async (req, res, next) => {
 
 exports.test = (req, res, next) => {
     res.status(200).json({ error: null, res: 'test' });
-    }
+}
 
 exports.register = async (req, res) => {
     req.checkBody('password', 'passwords must be at least 5 chars long').isLength({ min: 5 })
@@ -75,9 +75,8 @@ exports.register = async (req, res) => {
 }
 
 exports.logOut = (req, res) => {
-    // res.clearCookie('LoginSignupCookie'); //not working
+    req.logout();
     req.session.destroy(err => {
-        req.logout();
         log(chalk.green(`user logged out successfully`));
         res.status(200).json({ error: null, res: 'user logged out successfully' });
     });

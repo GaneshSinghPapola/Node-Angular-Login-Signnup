@@ -8,6 +8,7 @@ log(chalk.green('Middleware controller called'));
 
 exports.varifyToken = (req, res, next) => {
     const {token}= req.headers;
+    // log(chalk.blue(JSON.stringify(req.session)))
     if(req.session.user)
     jwt.verify(token, JWTMESSAGE,(err, decoded)=> {
         if (err)return res.status(500).json({ error: { custom: 'unauthorized user' }, res: null });
