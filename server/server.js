@@ -16,18 +16,12 @@ db.once('open', ()=> {
 
 const port = 3000;
 export const app = express();
-
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(expressValidator());
 app.use(session({
+  secret: "TestTastyNodeNody",
   name: 'LoginSignupCookie',
-  secret: 'TestTastyNodeNody',
+  saveUninitialized: true,
   resave: true,
   rolling: true,
-  saveUninitialized: true,
   cookie: { secure: true, maxAge: 129600000 },
   store: new MongoStore({
     mongooseConnection : mongoose.connections[0],
@@ -36,7 +30,16 @@ app.use(session({
     autoRemove:'interval',
     autoRemoveInterval:300
   })
-}))
+}));
+
+
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(expressValidator());
+
 
 routes(app);
 app.listen(port, () => {

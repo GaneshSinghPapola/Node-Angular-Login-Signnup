@@ -5,7 +5,7 @@
   "main": "loader.js",
   "scripts": {
     "test": "mocha --require babel-polyfill --require babel-register  tests",
-    "start": "node loader.js"
+    "start": "nodemon loader.js"
   },
   "author": "Ganesh Singh",
   "dependencies": {

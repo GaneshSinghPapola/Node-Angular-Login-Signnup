@@ -28,9 +28,9 @@ exports.login = async (req, res, next) => {
         if (user) {
             const { password, created_at, updated_at, __v, ...data } = user['_doc'];
             data.token = jwt.sign({ email: data.email, name: data.name, _id: data._id}, JWTMESSAGE)
-            req.user = data;
-            req.user.isLoggedIn = true;
-            log(chalk.red(JSON.stringify(req.session.user)))
+            req.session.user = data;
+            req.session.isLoggedIn = true;
+
             res.status(200).json({ error: null, res: 'user logged in successfully', data: data});
         } else {
             req.session.user = undefined;
@@ -41,6 +41,10 @@ exports.login = async (req, res, next) => {
      }
     
 }
+
+exports.test = (req, res, next) => {
+    res.status(200).json({ error: null, res: 'test' });
+    }
 
 exports.register = async (req, res) => {
     req.checkBody('password', 'passwords must be at least 5 chars long').isLength({ min: 5 })
@@ -72,30 +76,17 @@ exports.register = async (req, res) => {
 
 exports.logOut = (req, res) => {
     res.clearCookie('LoginSignupCookie');
-    // req.session.destroy(function (err) {
-    //     req.logout();
-    //     res.redirect('/');
-    // });
+    
+    req.session.destroy(function (err) {
+        req.logout();
+        // res.redirect('/');
+    });
     req.logout();
+    log(chalk.green(JSON.stringify(req.session)));
     res.status(200).json({ error: null, res: 'user logged out successfully' });
 
 }
 
-exports.varifyToken = (req, res, next) => {
-    const {token}= req.headers;
-    log(chalk.red(JSON.stringify(req.user)))
-    if(req.session.user)
-    jwt.verify(token, JWTMESSAGE,(err, decoded)=> {
-        if (err) 
-        return res.status(500).json({ error: { custom: 'unauthorized user' }, res: null });
-        next();
-      });
-      else return res.status(500).json({ error: { custom: 'please login first to continue' }, res: null });
-}
-
-exports.test = (req, res, next) => {
-res.status(200).json({ error: null, res: 'test' });
-}
 
 const wrongValidation = (error,res)=>{
     return res.status(400).json({ error, res: null });
