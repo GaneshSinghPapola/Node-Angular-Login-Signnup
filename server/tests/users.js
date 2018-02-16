@@ -17,14 +17,6 @@ describe('Unit test for Login & Registration', () => {
 
     // login tests 
 
-        // describe('Login Email Validation', ()=> {
-        //     it('Email should be valid string', done => {
-        //         expect('email@test.com').to.be.a('string');
-        //         done();
-        //     }); 
-        // })
-
-
 
         //================================= sign up ==============================================
 
@@ -133,7 +125,7 @@ describe('Unit test for Login & Registration', () => {
                 SuperTest.post('/register')
                    .set('Accept', 'application/json')
                    .set('Content-Type', 'application/json')
-                   .send({ email: 'ganeshpapola3@gmail.com', password: 'test12345', age:12, name:'ganesh singh' })
+                   .send({ email: 'ganeshpapola2623@gmail.com', password: 'test12345', age:12, name:'ganesh singh' })
                    .expect(200)
                    .expect('Content-Type', /json/)
                    .expect(response=> {
