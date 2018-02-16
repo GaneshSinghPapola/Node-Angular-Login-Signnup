@@ -38,36 +38,3 @@ routes(app);
 app.listen(port, () => {
     console.info('server started - ', port);
 });
-
-
-
-// var Promise = require("bluebird");
-// var soap = require('soap');
-// let request = require('request'),
-// parser = require('xml2json');
-
-
-// let request_with_defaults = request.defaults({
-//   'proxy': 'http://example.com:80',
-//   'timeout': 5000,
-//   'connection': 'keep-alive'
-// });
-//   var url = 'http://www.webservicex.com/globalweather.asmx?WSDL';
-// // var url = 'https://cert1.springermiller.com/HTNGListener2_1/HTNGListener2_1.asmx?wsdl';
-// let soap_client_options = { 'request': request_with_defaults};
-// var soapHeader = {
-//     "Username": "test",
-//     "Password" : "test"
-//   };
-  
-//   var args = {CountryName:'india'};
-//   var soapHeader = {};
-//   soap.createClient(url, function(err, client) {
-//     console.log( err);
-//     //   client.addSoapHeader(soapHeader);
-//       client.GetCitiesByCountry(args, function(err, result, raw) {
-//           // console.log(err, result);
-//           var json = parser.toJson(raw);
-//       // console.log("to json -> %s", json);
-//       });
-//   });
